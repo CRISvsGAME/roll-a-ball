@@ -1,0 +1,8 @@
+/.vscode
+/*.csproj
+/*.slnx
+/Library
+/Logs
+/Temp
+/UserSettings
+/WebBuilds
