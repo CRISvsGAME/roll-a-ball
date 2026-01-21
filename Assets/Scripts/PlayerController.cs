@@ -14,14 +14,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Start()
-    {
-    }
-
-    private void Update()
-    {
-    }
-
     private void FixedUpdate()
     {
         _rigidbody.AddForce(new Vector3(movementX, 0f, movementY) * speed);
