@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    [SerializeField] private float speed = 10f;
-    private float movementX;
-    private float movementY;
+    [SerializeField] private float _speed = 10f;
+    private float _movementX;
+    private float _movementY;
 
     private void Awake()
     {
@@ -16,13 +16,23 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.AddForce(new Vector3(movementX, 0f, movementY) * speed);
+        _rigidbody.AddForce(new Vector3(_movementX, 0f, _movementY) * _speed);
     }
 
     private void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        _movementX = movementVector.x;
+        _movementY = movementVector.y;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject gameObject = other.gameObject;
+
+        if (gameObject.CompareTag("PickUp"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
