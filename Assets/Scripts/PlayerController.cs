@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    private int _count = 0;
     [SerializeField] private float _speed = 10f;
     private float _movementX;
     private float _movementY;
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
         if (gameObject.CompareTag("PickUp"))
         {
             gameObject.SetActive(false);
+            _count++;
+            Debug.Log($"Count: {_count}");
         }
     }
 }
