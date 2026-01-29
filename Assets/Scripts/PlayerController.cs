@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private int _count = 0;
+    [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private float _speed = 10f;
     private float _movementX;
     private float _movementY;
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        SetCountText();
     }
 
     private void FixedUpdate()
@@ -35,7 +38,12 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.SetActive(false);
             _count++;
-            Debug.Log($"Count: {_count}");
+            SetCountText();
         }
+    }
+
+    private void SetCountText()
+    {
+        _countText.text = $"Count: {_count}";
     }
 }
