@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     private int _count = 0;
     [SerializeField] private TextMeshProUGUI _countText;
+    [SerializeField] private GameObject _winTextObject;
     [SerializeField] private float _speed = 10f;
     private float _movementX;
     private float _movementY;
 
     private void Awake()
     {
+        _winTextObject.SetActive(false);
         _rigidbody = GetComponent<Rigidbody>();
         SetCountText();
     }
@@ -45,5 +47,10 @@ public class PlayerController : MonoBehaviour
     private void SetCountText()
     {
         _countText.text = $"Count: {_count}";
+
+        if (_count >= 12)
+        {
+            _winTextObject.SetActive(true);
+        }
     }
 }
